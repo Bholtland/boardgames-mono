@@ -1,0 +1,20 @@
+syntax = "proto3";
+package board_game;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/protocolbuffers/protobuf/examples/go/tutorialpb";
+
+message NewGameEvent {
+  string name = 1;
+  string description = 2;
+  google.protobuf.Timestamp created = 3;
+}
+
+message NewGameEventCreated {
+  bool success = 1;
+}
+
+service GameEventService {
+  rpc CreateGameEvent(NewGameEvent) returns (NewGameEventCreated);
+}
